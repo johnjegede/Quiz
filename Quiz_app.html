@@ -7,19 +7,36 @@
     <title>Quiz App</title>
   </head>
   <body>
-      <nav>
-        <ul>
-          <li>view Highscores</li>
-          <li>Timer: <span></span></li>
-        </ul>
-      </nav>
+    <nav>
+      <div id="top_left">View Highscores</div>
+      <div id="top_right">Timer: <span></span></div>
+    </nav>
 
-      <section>
-          <h1>Quiz Questions</h1>
-          <section>
-              
-          </section>
+    <section>
+      <h1>Quiz Questions</h1>
+      <section id="quiz_items">
+        <p>
+          Answer all the code questions in the time limit allocated. Any
+          question answered wrongly time will be deducted by 10 seconds;
+        </p>
+        <button id="begin">Start Quiz</button>
       </section>
+    </section>
 
+    <section id="questions" class="hide">
+      <h2 id="question-title"></h2>
+      <section id="choices" class="choices"></section>
+    </section>
+
+    <section id="final_screen" class="hide">
+      <h2>Finished!</h2>
+      <p>Your score is <span id="final-score"></span>.</p>
+      <p>
+        Enter initials: <input type="text" id="initials" max="3" />
+        <button id="submit">Submit</button>
+      </p>
+    </section>
+
+    <script src="quiz_app.js"></script>
   </body>
 </html>
