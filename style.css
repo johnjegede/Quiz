@@ -11,14 +11,14 @@ nav{
     
 }
 
-#top_left{
+.top_left{
     display: inline-block;
     position: relative;
     left: 5%;
     font-size: 24px;
     padding: 10px;
 }
-#top_right{
+.top_right{
     display: inline-block;
     position: relative;
     left: 70%;

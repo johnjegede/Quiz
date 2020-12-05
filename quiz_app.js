@@ -33,3 +33,39 @@ var questions = [
       answer: "console.log"
     }
   ];
+
+
+
+  var StartButton =  document.getElementById("begin");
+  var timerValue = document.getElementById("timer");
+  var questionsElement = document.getElementById("Quiz_questions");
+  var time = 60;
+  var timerContent;
+
+
+  StartButton.addEventListener("click",function(){
+      timerContent = setInterval(startClock, 1000);
+
+      timerValue.innerHTML = time;
+
+      var ScreenElement = document.getElementById("quiz_items"); 
+      ScreenElement.setAttribute("class", "hide");
+
+      questionsElement.removeAttribute("class");
+
+      getQuizQuestions();
+     
+    
+
+  });
+
+  function startClock() {
+    // change time
+    time--;
+    timerValue.innerHTML = time;
+  
+    // check if time has ended
+    if (time <= 0) {
+      quizEnd();
+    }
+  }
