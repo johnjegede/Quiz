@@ -75,8 +75,8 @@ var questions = [
         choiceValue.setAttribute("value", getQuestion.choices[index]);
         choiceValue.innerHTML = getQuestion.choices[index];
 
-        choiceValue.addEventListener("click",function(){
-            QuestionOnClick();
+        choiceValue.addEventListener("click",function(e){
+            QuestionOnClick(e);
 
         });
 
@@ -84,18 +84,61 @@ var questions = [
 
     });
 
+    function QuestionOnClick(e){
+        var result = e.target.value;
+        var response = document.getElementById("response");
+        if( result !== questions[questionIndex].answer){
+            time -= 10;
+
+            if(time <=0){
+                time = 0;
+            }
+
+            timerValue.innerHTML = time;
+
+            response.innerHTML = "WRONG";
+        }else {
+            response.innerHTML = "RIGHT";
+        }
+
+        setInterval(function(){
+            response.innerHTML="";
+        }, 1000);
+
+        questionIndex++;
+
+        if (questionIndex === questions.length) {
+            endQuiz();
+          } else {
+            getQuizQuestions();
+          }
+    }
         
-        
+    function endQuiz() {
+        clearInterval(timerContent);
+      
+        // show end screen
+        var finalScreen = document.getElementById("final_screen");
+        finalScreen.removeAttribute("class");
+      
+        // show final score
+        var finalScreen = document.getElementById("final-score");
+        finalScreen.textContent = time;
+      
+        // hide questions section
+        questionsElement.setAttribute("class", "hide");
+      }
+       
 
         
 
-  function startClock() {
+  function startClock(){
     // change time
     time--;
     timerValue.innerHTML = time;
   
     // check if time has ended
     if (time <= 0) {
-      quizEnd();
+        endQuiz();
     }
   }
