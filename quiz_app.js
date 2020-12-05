@@ -124,13 +124,33 @@ var questions = [
         // show final score
         var finalScreen = document.getElementById("final-score");
         finalScreen.textContent = time;
+
+        var submitButton =  document.getElementById("submit");
+        submitButton.addEventListener("click",function(){
+            score();
+        });
       
         // hide questions section
         questionsElement.setAttribute("class", "hide");
       }
-       
 
-        
+      function score(){
+          var initials = document.getElementById("initials");
+          var scoreTime = time;
+          var highScore = [];
+          var highScore = JSON.parse(localStorage.getItem("highScore"));
+
+          var newScore = {
+            score: scoreTime,
+            initials: initials
+          };
+      
+          // save to localstorage
+          highScore.push(newScore);
+          localStorage.setItem("highscores", JSON.stringify(highScore));
+
+      }
+       
 
   function startClock(){
     // change time
