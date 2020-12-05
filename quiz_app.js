@@ -83,6 +83,7 @@ var questions = [
         choiceElement.appendChild(choiceValue);
 
     });
+}
 
     function QuestionOnClick(e){
         var result = e.target.value;
@@ -138,7 +139,7 @@ var questions = [
           var initials = document.getElementById("initials");
           var scoreTime = time;
           var highScore = [];
-          var highScore = JSON.parse(localStorage.getItem("highScore"));
+          highScore = JSON.parse(localStorage.getItem("highScore"));
 
           var newScore = {
             score: scoreTime,
@@ -147,7 +148,7 @@ var questions = [
       
           // save to localstorage
           highScore.push(newScore);
-          localStorage.setItem("highscores", JSON.stringify(highScore));
+          localStorage.setItem("highScore", JSON.stringify(highScore));
 
       }
        
@@ -162,3 +163,38 @@ var questions = [
         endQuiz();
     }
   }
+
+  function printHighscores() {
+    var highScore = [];
+    highScore = JSON.parse(localStorage.getItem("highScore"));
+  
+    // sort highscores by score property in descending order
+    highScore.sort(function(a, b) {
+      return b.score - a.score;
+    });
+
+    var viewScoreElement = document.getElementById("highScores");
+    viewScoreElement.removeAttribute("class");
+
+    var olElement = document.getElementById("scores");
+  
+    highScore.forEach(function(value) {
+      // create li tag for each high score
+      var liTag = document.createElement("li");
+      liTag.innerHTML = value.initials + " - " + value.score;
+  
+      // display on page
+      
+      olElement.appendChild(liTag);
+    });
+  }
+  
+  function clearHighscores() {
+    window.localStorage.removeItem("highscores");
+    window.location.reload();
+  }
+  
+  document.getElementById("clear").onclick = clearHighscores;
+  
+  document.getElementById("viewscores").onclick = printHighscores();
+

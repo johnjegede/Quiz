@@ -8,11 +8,11 @@
   </head>
   <body>
     <nav>
-      <div class="top_left"  id="scores">View Highscores</div>
+      <div class="top_left" id="viewscores"><a href="#"></a>View Highscores</a></div>
       <div class="top_right" id="timer">Timer: <span></span></div>
     </nav>
 
-    <section>
+    <section id="quizzes">
       <h1>Quiz Questions</h1>
       <section id="quiz_items">
         <p>
@@ -38,10 +38,12 @@
     </section>
     <section id="response" class="feedback hide"></section>
 
-    <section id="highScores">
+    <section id="highScores" class="hide">
       <h1>HighScores</h1>
       <ol id="scores"></ol>
 
+      <a href="#quizzes"><button>Go Back</button></a>
+      <button id="clear">Clear Scores</button>
     </section>
 
     <script src="quiz_app.js"></script>
