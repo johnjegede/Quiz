@@ -36,14 +36,16 @@ var questions = [
 
 
 
-  var StartButton =  document.getElementById("begin");
+  var startButton =  document.getElementById("begin");
   var timerValue = document.getElementById("timer");
   var questionsElement = document.getElementById("Quiz_questions");
+  var choiceElement = document.getElementById("choices");
   var time = 60;
   var timerContent;
+  var questionIndex = 0;
 
 
-  StartButton.addEventListener("click",function(){
+  startButton.addEventListener("click",function(){
       timerContent = setInterval(startClock, 1000);
 
       timerValue.innerHTML = time;
@@ -58,6 +60,34 @@ var questions = [
     
 
   });
+
+  function getQuizQuestions(){
+
+    var getQuestion = questions[questionIndex];
+    var newQuestion = document.getElementById("Quiz_questions");
+    newQuestion.innerHTML = '';
+    newQuestion.innerHTML = getQuestion.title;
+
+    getQuestion.choices.forEach(function(index){
+
+        var choiceValue = document.createElement("button");
+        choiceValue.setAttribute("class", "buttons");
+        choiceValue.setAttribute("value", getQuestion.choices[index]);
+        choiceValue.innerHTML = getQuestion.choices[index];
+
+        choiceValue.addEventListener("click",function(){
+            QuestionOnClick();
+
+        });
+
+        choiceElement.appendChild(choiceValue);
+
+    });
+
+        
+        
+
+        
 
   function startClock() {
     // change time
