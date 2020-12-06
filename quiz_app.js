@@ -42,8 +42,9 @@ var time = 60;
 var timerContent;
 var questionIndex = 0;
 
+// begin quiz event
 startButton.addEventListener("click", function () {
-  //timerContent = setInterval(startClock, 1000);
+  timerContent = setInterval(startClock, 1000);
 
   timerValue.innerHTML = time;
 
@@ -55,6 +56,7 @@ startButton.addEventListener("click", function () {
   getQuizQuestions();
 });
 
+//get questions function
 function getQuizQuestions() {
   var getQuestion = questions[questionIndex];
   var newQuestion = document.getElementById("Quiz_questions");
@@ -62,7 +64,7 @@ function getQuizQuestions() {
   newQuestion.innerHTML = getQuestion.title;
 
   choiceElement.innerHTML = "";
-
+  // loop through each of the choices
   getQuestion.choices.forEach(function (choice) {
     var choiceValue = document.createElement("button");
     choiceValue.setAttribute("class", "buttons");
@@ -77,10 +79,10 @@ function getQuizQuestions() {
   });
 }
 
+// Response for when question is clicked
 function QuestionOnClick(e) {
   var result = e.target.value;
   var response = document.getElementById("response");
-  //response.removeAttribute("class");
 
   if (result !== questions[questionIndex].answer) {
     time -= 10;
@@ -100,7 +102,6 @@ function QuestionOnClick(e) {
     response.innerHTML = "";
   }, 1500);
 
-  //response.setAttribute("class", "hide");
   questionIndex++;
 
   if (questionIndex === questions.length) {
@@ -189,27 +190,24 @@ function printHighscores() {
   });
 }
 
-
 var ClearElement = document.getElementById("clear");
 
-ClearElement.addEventListener("click",function(e){
-
-    e.preventDefault();
-    var olElement = document.getElementById("scores");
-    olElement.innerHTML = "";
-    window.localStorage.removeItem("highScore");
-    window.location.reload();
+ClearElement.addEventListener("click", function (e) {
+  e.preventDefault();
+  var olElement = document.getElementById("scores");
+  olElement.innerHTML = "";
+  window.localStorage.removeItem("highScore");
+  window.location.reload();
 });
 
 var scoreElement = document.getElementById("viewscores");
 
-scoreElement.addEventListener("click",function(){
-
+scoreElement.addEventListener("click", function () {
   printHighscores();
 });
 
 var goBackElement = document.getElementById("goback");
 
-goBackElement.addEventListener("click",function(){
+goBackElement.addEventListener("click", function () {
   window.location.reload();
 });
