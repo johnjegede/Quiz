@@ -43,7 +43,7 @@ var timerContent;
 var questionIndex = 0;
 
 startButton.addEventListener("click", function () {
-  timerContent = setInterval(startClock, 1000);
+  //timerContent = setInterval(startClock, 1000);
 
   timerValue.innerHTML = time;
 
@@ -80,6 +80,8 @@ function getQuizQuestions() {
 function QuestionOnClick(e) {
   var result = e.target.value;
   var response = document.getElementById("response");
+  //response.removeAttribute("class");
+
   if (result !== questions[questionIndex].answer) {
     time -= 10;
 
@@ -96,8 +98,9 @@ function QuestionOnClick(e) {
 
   setInterval(function () {
     response.innerHTML = "";
-  }, 1000);
+  }, 1500);
 
+  //response.setAttribute("class", "hide");
   questionIndex++;
 
   if (questionIndex === questions.length) {
@@ -173,6 +176,7 @@ function printHighscores() {
   viewScoreElement.removeAttribute("class");
 
   var olElement = document.getElementById("scores");
+  olElement.innerHTML = "";
 
   highScores.forEach(function (score) {
     // create li tag for each high score
@@ -202,4 +206,10 @@ var scoreElement = document.getElementById("viewscores");
 scoreElement.addEventListener("click",function(){
 
   printHighscores();
+});
+
+var goBackElement = document.getElementById("goback");
+
+goBackElement.addEventListener("click",function(){
+  window.location.reload();
 });

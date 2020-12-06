@@ -27,9 +27,11 @@
     <section id="questions" class="hide">
       <h2 id="Quiz_questions"></h2>
       <section id="choices" class="choices"></section>
+      <hr>
+      <section id="response" class="response"></section>
     </section>
 
-    <section id="final_screen" class="hide">
+    <section id="final_screen" class="final hide">
       <h2>Finished!</h2>
       <p>Your score is <span id="final-score"></span>.</p>
       <p>
@@ -37,13 +39,14 @@
         <button id="submit">Submit</button>
       </p>
     </section>
-    <section id="response" class="feedback hide"></section>
+
+    
 
     <section id="viewyourScores" class="hide">
       <h1>HighScores</h1>
       <ol id="scores"></ol>
 
-      <a href="#quizzes"><button>Go Back</button></a>
+      <button id="goback">Go Back</button>
       <button id="clear">Clear Scores</button>
     </section>
 
